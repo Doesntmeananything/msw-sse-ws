@@ -12,5 +12,5 @@ The current and very simple approach is the following:
 
 1. Clone the repository.
 2. Install the dependencies using `yarn install`.
-3. Run `yarn msw-test` which simultanously start both the server and the client.
+3. Run `yarn msw-test` which simultanously starts both the server and the client.
 4. Once the client starts, proceed to the opened browser tab, open developer console, and observe the results.
