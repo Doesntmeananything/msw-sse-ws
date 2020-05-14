@@ -10,16 +10,23 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "concurrently": "^5.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "fastify": "^2.14.1",
+    "fastify-cors": "^3.0.3",
+    "fastify-sse-v2": "^1.0.3",
+    "fastify-websocket": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start-server": "node server/server.js",
+    "start-client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "msw-test": "concurrently \"npm:start-server\" \"npm:start-client\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "msw": "^0.15.9"
   }
 }

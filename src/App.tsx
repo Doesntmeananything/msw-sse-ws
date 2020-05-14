@@ -1,8 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+// Handling SSE
+const evtSource = new EventSource("http://localhost:5000/sse");
+evtSource.onmessage = (event) => {
+  console.log(`Incoming SSE: ${event.data}`);
+};
 
 function App() {
+  // Handling WS
+  const [webSocket, setWebSocket] = useState<WebSocket | null>(null);
+
+  webSocket?.addEventListener("message", function (event) {
+    console.log("Incoming WS: ", event.data);
+  });
+
+  const opentSocket = () => {
+    setWebSocket(new WebSocket("ws://localhost:5000/websocket"));
+  };
+
+  const testSocket = () => {
+    webSocket?.send("hi from client");
+  };
+
+  const closeSocket = () => {
+    webSocket?.close();
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -10,14 +35,9 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button onClick={opentSocket}>Open WebSocket</button>
+        <button onClick={testSocket}>Test WebSocket</button>
+        <button onClick={closeSocket}>Close WebSocket</button>
       </header>
     </div>
   );
