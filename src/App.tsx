@@ -16,7 +16,7 @@ function App() {
     console.log("Incoming WS: ", event.data);
   });
 
-  const opentSocket = () => {
+  const openSocket = () => {
     setWebSocket(new WebSocket("ws://localhost:5000/websocket"));
   };
 
@@ -35,7 +35,7 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <button onClick={opentSocket}>Open WebSocket</button>
+        <button onClick={openSocket}>Open WebSocket</button>
         <button onClick={testSocket}>Test WebSocket</button>
         <button onClick={closeSocket}>Close WebSocket</button>
       </header>
